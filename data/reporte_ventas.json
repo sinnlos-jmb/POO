@@ -1,0 +1,317 @@
+[
+  {
+    "empleado": "fabricio",
+    "items": [],
+    "total": 0
+  },
+  {
+    "empleado": "fabricio",
+    "items": [
+      {
+        "producto": {
+          "marca": "adidas",
+          "modelo": "samba",
+          "precio": 22,
+          "stock": 322,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 11
+      },
+      {
+        "producto": {
+          "marca": "nike",
+          "modelo": "jordan",
+          "precio": 555,
+          "stock": 22220,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 2
+      }
+    ],
+    "total": 1352
+  },
+  {
+    "empleado": "fabricio",
+    "items": [
+      {
+        "producto": {
+          "marca": "nike",
+          "modelo": "jordan",
+          "precio": 555,
+          "stock": 22220,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 2
+      },
+      {
+        "producto": {
+          "marca": "fila",
+          "modelo": "tenis",
+          "precio": 333,
+          "stock": 44441,
+          "tipo": "",
+          "talle": "32",
+          "material": "lona",
+          "category": "Calzado"
+        },
+        "cantidad": 3
+      },
+      {
+        "producto": {
+          "marca": "adidas",
+          "modelo": "samba",
+          "precio": 22,
+          "stock": 332,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 1
+      }
+    ],
+    "total": 2131
+  },
+  {
+    "empleado": "koan",
+    "items": [
+      {
+        "producto": {
+          "marca": "topper",
+          "modelo": "lona",
+          "precio": 111,
+          "stock": 4441,
+          "tipo": "",
+          "talle": "34",
+          "material": "lona",
+          "category": "Calzado"
+        },
+        "cantidad": 3
+      },
+      {
+        "producto": {
+          "marca": "adidas",
+          "modelo": "samba",
+          "precio": 22,
+          "stock": 331,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 2
+      }
+    ],
+    "total": 377
+  },
+  {
+    "empleado": "koan",
+    "items": [
+      {
+        "producto": {
+          "marca": "nike",
+          "modelo": "jordan",
+          "precio": 555,
+          "stock": 22220,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 2
+      },
+      {
+        "producto": {
+          "marca": "topper",
+          "modelo": "lona",
+          "precio": 111,
+          "stock": 4441,
+          "tipo": "",
+          "talle": "34",
+          "material": "lona",
+          "category": "Calzado"
+        },
+        "cantidad": 3
+      }
+    ],
+    "total": 1443
+  },
+  {
+    "empleado": "fabricio",
+    "items": [
+      {
+        "producto": {
+          "marca": "puma",
+          "modelo": "entrenamiento",
+          "precio": 4443,
+          "stock": 332,
+          "tipo": "",
+          "temporada": "invierno",
+          "talles": "33-66",
+          "color": "gris",
+          "category": "Campera"
+        },
+        "cantidad": 2
+      }
+    ],
+    "total": 8886
+  },
+  {
+    "empleado": "fabricio",
+    "items": [
+      {
+        "producto": {
+          "marca": "nike",
+          "modelo": "jordan",
+          "precio": 555,
+          "stock": 22200,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 22
+      }
+    ],
+    "total": 12210
+  },
+  {
+    "empleado": "koan",
+    "items": [
+      {
+        "producto": {
+          "marca": "puma",
+          "modelo": "entrenamiento",
+          "precio": 4443,
+          "stock": 334,
+          "tipo": "",
+          "temporada": "invierno",
+          "talles": "33-66",
+          "color": "gris",
+          "category": "Campera"
+        },
+        "cantidad": 4
+      },
+      {
+        "producto": {
+          "marca": "puma",
+          "modelo": "jogging",
+          "precio": 3331,
+          "stock": 78,
+          "tipo": "",
+          "ancho": "34",
+          "largo": "36",
+          "category": "Pantalon"
+        },
+        "cantidad": 1
+      }
+    ],
+    "total": 21103
+  },
+  {
+    "empleado": "fabricio",
+    "items": [
+      {
+        "producto": {
+          "marca": "nike",
+          "modelo": "jordan",
+          "precio": 555,
+          "stock": 22222,
+          "tipo": "",
+          "talle": "33",
+          "material": "cuero",
+          "category": "Calzado"
+        },
+        "cantidad": 3
+      },
+      {
+        "producto": {
+          "marca": "fila",
+          "modelo": "tenis",
+          "precio": 333,
+          "stock": 44444,
+          "tipo": "",
+          "talle": "32",
+          "material": "lona",
+          "category": "Calzado"
+        },
+        "cantidad": 2
+      },
+      {
+        "producto": {
+          "marca": "reebok",
+          "modelo": "training",
+          "precio": 4455,
+          "stock": 55,
+          "tipo": "",
+          "ancho": "34",
+          "largo": "50",
+          "category": "Pantalon"
+        },
+        "cantidad": 5
+      }
+    ],
+    "total": 24606
+  },
+  {
+    "empleado": "javier",
+    "items": [
+      {
+        "producto": {
+          "marca": "puma",
+          "modelo": "jogging",
+          "precio": 3331,
+          "stock": 78,
+          "tipo": "",
+          "ancho": "34",
+          "largo": "36",
+          "category": "Pantalon"
+        },
+        "cantidad": 1
+      },
+      {
+        "producto": {
+          "marca": "puma",
+          "modelo": "entrenamiento",
+          "precio": 4443,
+          "stock": 334,
+          "tipo": "",
+          "temporada": "invierno",
+          "talles": "33-66",
+          "color": "gris",
+          "category": "Campera"
+        },
+        "cantidad": 2
+      }
+    ],
+    "total": 12217
+  },
+  {
+    "empleado": "fabricio",
+    "items": [
+      {
+        "producto": {
+          "marca": "asics",
+          "modelo": "running",
+          "precio": 34333,
+          "stock": 343,
+          "tipo": "",
+          "talle": "10",
+          "material": "12",
+          "category": "Calzado"
+        },
+        "cantidad": 22
+      }
+    ],
+    "total": 0
+  }
+]

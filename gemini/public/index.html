@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="gem5.css" />
+    <title>Gemini LLM Streamer</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Gemini LLM Streamer</h1>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <input type="text" id="prompt" style="width: 100%; height: 20px;" placeholder="prompt...">
+            </div>
+
+            <div class="grid-cols-2">
+                <div style="margin-left:25px;">
+                    <button id="generateBtn">
+                     Generate Stream
+                    </button>          
+                 </div>
+                <div class="input-group">
+                    <label for="temperature">Temperature:</label>
+                    <input type="number" id="temperature" style="width: 50px;" value="0.7" min="0" max="1" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="model">Model:</label>
+                    <select id="model">
+                    <option value="gemma-3n-e4b-it">gemma-3n-e4b-it</option>
+                    <option value="gemma-3-27b-it">gemma-3-27b-it</option>
+                    <option value="gemini-2.0-flash">gemini-2.0-flash</option>
+                    <option value="gemini-2.5-flash-lite-preview-06-17">gemini-2.5-flash-LITE</option>
+                    <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+                    <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+                        <!-- Add other models if needed -->
+                    </select>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <!-- Response Section -->
+        <div class="response-section">
+            <h2>Response:</h2>
+            <div id="loadingIndicator">
+                Generating response... Please wait.
+            </div>
+            <div id="responseArea">
+                <!-- LLM streaming response will appear here -->
+                Start by entering a prompt and clicking "Generate Stream".
+            </div>
+            <div id="errorDisplay">
+                <!-- Error messages will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const promptInput = document.getElementById('prompt');
+        const temperatureInput = document.getElementById('temperature');
+        const modelSelect = document.getElementById('model');
+        const generateBtn = document.getElementById('generateBtn');
+        const responseArea = document.getElementById('responseArea');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorDisplay = document.getElementById('errorDisplay');
+        
+        generateBtn.addEventListener('click', async () => {
+            const prompt = promptInput.value.trim();
+            const temperature = parseFloat(temperatureInput.value);
+            const model = modelSelect.value;
+
+            // Clear previous response and error
+            responseArea.textContent = '';
+            errorDisplay.textContent = '';
+            errorDisplay.classList.remove('visible'); // Use custom class for visibility
+
+            if (!prompt) {
+                errorDisplay.textContent = 'Please enter a prompt.';
+                errorDisplay.classList.add('visible');
+                return;
+            }
+
+            loadingIndicator.classList.add('visible');
+            generateBtn.disabled = true; // Disable button during generation
+
+            try {
+                const response = await fetch('http://localhost:3060/generate-content', { // Ensure this matches your server's port
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt, temperature, model }),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder('utf-8');
+                let result = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) {
+                        break; // Stream finished
+                    }
+                    result += decoder.decode(value, { stream: true });
+                    responseArea.textContent = result;
+                    responseArea.scrollTop = responseArea.scrollHeight; // Scroll to bottom
+                }
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                errorDisplay.textContent = `Error: ${error.message}. Please check your server and network connection.`;
+                errorDisplay.classList.add('visible');
+                responseArea.textContent = 'Could not get a response. Please try again.';
+            } finally {
+                loadingIndicator.classList.remove('visible');
+                generateBtn.disabled = false; // Re-enable button
+            }
+        });
+    </script>
+</body>
+</html>

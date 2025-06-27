@@ -1,0 +1,75 @@
+    body {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    h2 { text-align: center;}
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto 1fr; /* Two columns: auto width for nav, remaining for main */
+      grid-template-rows: auto auto 1fr auto; /* Four rows: header, nav (initially), main, footer */
+      grid-template-areas:
+        "header  header"
+        "nav     main"
+        "nav     main"
+        "footer  footer";
+      min-height: 100vh; /* Ensure the grid takes at least the full viewport height */
+    }
+
+    header {
+      grid-area: header;
+      background-color: #f0f0f0;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav {
+      grid-area: nav;
+      background-color: #f4e7e7;;
+      padding: 1em;
+    }
+
+    main {
+      grid-area: main;
+      padding: 1em;
+    }
+
+    footer {
+      grid-area: footer;
+      background-color: #f0f0f0;
+      color: rgb(30, 19, 19);
+      padding: 1em;
+      text-align: center;
+    }
+
+
+    .input_small { max-width: 50px; }
+    .input_l { display: block; }
+    
+   .submit_btn {
+      /*padding: 8px 16px;font-size: 14px;border: none;*/
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      display: block;
+    }
+  
+  .carro {
+    background-color: lightgrey;
+    min-height: 50px;
+    width: 300px;
+  }
+
+ 
+    @media (max-width: 600px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto 1fr auto;
+        grid-template-areas:
+          "header"
+          "nav"
+          "main"
+          "main"
+          "footer";
+      }
+    }

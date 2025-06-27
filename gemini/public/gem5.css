@@ -1,0 +1,199 @@
+        body {
+            font-family: "Inter", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f4f8; /* Light background */
+            padding: 16px; /* Equivalent to p-4 */
+            margin: 0;
+        }
+
+        /* Container for the main content */
+        .container {
+            max-width: 90%; /* Max width for larger screens */
+            width: 100%; /* Full width on smaller screens */
+            background-color: #ffffff; /* White background */
+            padding: 24px; /* Equivalent to p-6 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Equivalent to shadow-xl */
+            border-radius: 0.5rem; /* Equivalent to rounded-lg */
+            display: flex;
+            flex-direction: column;
+            gap: 24px; /* Equivalent to gap-6 */
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px; /* Max width for medium screens */
+                padding: 32px; /* Equivalent to md:p-8 */
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 860px; /* Max width for larger screens */
+            }
+        }
+
+        /* Heading styles */
+        h1 {
+            font-size: 2.25rem; /* Equivalent to text-3xl */
+            line-height: 2.5rem;
+            font-weight: 800; /* Equivalent to font-extrabold */
+            text-align: center;
+            color: #1a202c; /* Equivalent to text-gray-800 */
+            margin-bottom: 24px; /* Equivalent to mb-6 */
+        }
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2.5rem; /* Equivalent to md:text-4xl */
+                line-height: 1; /* Equivalent to md:leading-tight */
+            }
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Equivalent to text-2xl */
+            line-height: 2rem;
+            font-weight: 700; /* Equivalent to font-bold */
+            color: #1a202c; /* Equivalent to text-gray-800 */
+            margin-bottom: 12px; /* Equivalent to mb-3 */
+        }
+
+        /* Input section styling */
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px; /* Equivalent to gap-4 */
+        }
+
+        .input-group {
+            margin-bottom: 16px; /* Add some space below each input group */
+        }
+
+        label {
+            display: inline;
+            color: #4a5568; /* Equivalent to text-gray-700 */
+            font-size: 0.875rem; /* Equivalent to text-sm */
+            font-weight: 600; /* Equivalent to font-semibold */
+            margin-bottom: 8px; /* Equivalent to mb-2 */
+        }
+
+        /* Adjusted padding for smaller inputs */
+        input[type="text"], /* New style for prompt input */
+        input[type="number"],
+        select {
+            padding: 8px 12px; /* Reduced vertical padding from 12px to 8px */
+            border: 1px solid #cbd5e0; /* Equivalent to border-gray-300 */
+            transition: all 0.2s ease-in-out; /* Equivalent to transition-all duration-200 */
+            border-radius: 0.5rem; /* All elements rounded */
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #3b82f6; /* Equivalent to focus:border-blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Equivalent to focus:ring-blue-500 */
+        }
+
+        select {
+            background-color: #ffffff; /* White background for select */
+        }
+
+        /* Prompt input no longer needs height/resize properties */
+        /* Removed #prompt specific height/resize to allow single line input */
+
+        /* Grid for temperature and model */
+        .grid-cols-2 {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on small screens */
+            gap: 16px; /* Equivalent to gap-4 */
+        }
+        @media (min-width: 768px) {
+            .grid-cols-2 {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); /* Two columns on medium screens and up */
+            }
+        }
+
+        /* Button styling */
+        button {
+            background-color: #2563eb; /* Equivalent to bg-blue-600 */
+            color: #ffffff; /* Equivalent to text-white */
+            font-weight: 700; /* Equivalent to font-bold */
+            padding: 12px 24px; /* Equivalent to py-3 px-6 */
+            transition: all 0.3s ease-in-out; /* Equivalent to transition-all duration-300 ease-in-out */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Equivalent to shadow-lg */
+            border-radius: 0.5rem; /* All elements rounded */
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1d4ed8; /* Equivalent to hover:bg-blue-700 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Equivalent to hover:shadow-xl */
+            transform: translateY(-2px); /* Equivalent to hover:-translate-y-0.5 */
+        }
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5), 0 0 0 4px rgba(59, 130, 246, 0.75); /* Equivalent to focus:ring-4 focus:ring-blue-300 focus:ring-opacity-75 */
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Response section styling */
+        .response-section {
+            margin-top: 24px; /* Equivalent to mt-6 */
+        }
+
+        #loadingIndicator {
+            display: none; /* Hidden by default */
+            text-align: center;
+            color: #3b82f6; /* Equivalent to text-blue-500 */
+            font-weight: 600; /* Equivalent to font-semibold */
+            margin-bottom: 16px; /* Equivalent to mb-4 */
+        }
+        #loadingIndicator.visible {
+            display: block;
+        }
+
+        #responseArea {
+            background-color: #f8fafc; /* Equivalent to bg-gray-50 */
+            padding: 16px; /* Equivalent to p-4 */
+            border: 1px solid #e2e8f0; /* Equivalent to border-gray-200 */
+            color: #1a202c; /* Equivalent to text-gray-800 */
+            font-size: 1rem; /* Equivalent to text-base */
+            line-height: 1.625; /* Equivalent to leading-relaxed */
+            white-space: pre-wrap; /* Preserve whitespace and wrap text */
+            word-wrap: break-word; /* Break long words */
+            max-height: 60vh; /* Limit height and allow scrolling */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #cbd5e0 #edf2f7; /* Firefox */
+            border-radius: 0.5rem; /* All elements rounded */
+        }
+        /* Custom scrollbar for Webkit browsers */
+        #responseArea::-webkit-scrollbar {
+            width: 8px;
+        }
+        #responseArea::-webkit-scrollbar-track {
+            background: #edf2f7;
+            border-radius: 4px;
+        }
+        #responseArea::-webkit-scrollbar-thumb {
+            background-color: #cbd5e0;
+            border-radius: 4px;
+            border: 2px solid #edf2f7;
+        }
+
+        #errorDisplay {
+            display: none; /* Hidden by default */
+            color: #dc2626; /* Equivalent to text-red-600 */
+            font-size: 0.875rem; /* Equivalent to text-sm */
+            margin-top: 8px; /* Equivalent to mt-2 */
+        }
+        #errorDisplay.visible {
+            display: block;
+        }
