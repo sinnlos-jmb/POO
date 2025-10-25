@@ -1,0 +1,40 @@
+grupo1
+Pia Buono
+Ludmila
+Rodrigo Muñoz
+(guido)
+(martin fridsam)
+
+
+grupo2
+Pablo Demartini
+Ignacio Vidal
+Carla Guisande
+Lucia Corral
+Ignacio Hernandez
+
+
+grupo3
+Cau Pablo
+Breppe Tatiana
+Peralta Tatiana
+
+
+grupo4
+Victoria Gomez Coria
+Julián Niegovich Tsilimidos
+Mariano Loreto
+Matías Sosa
+
+
+Graciela Vargas
+
+
+
+//
+Requerimientos
+planif: gantt (tareas)
+front-end: 	html + css  (GRIDs layout, angular react)
+back-end:	ecosistema JS: node, express (servidor web)  -  dbase mariadb  -  eventualmente acceso a API de IA (local: ollama o web:gemini - qwen - )
+	
+app:	login, documentacion (con diagramas), github

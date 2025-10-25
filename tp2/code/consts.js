@@ -3,9 +3,9 @@ const mariadb = require('mariadb');
 const host_db = "localhost";
 const user_db = "manu";
 const pwd_db = "1234";
-const dbase = "Poo_ecommerce";
+const dbase = "poo_hotel";
 const pool_size = 3;
-const port = 3306;
+const port = 3060;
 
 const d1=new Date();
 const fecha=String(d1.getDate()).padStart(2, '0')+"/"+String(d1.getMonth() + 1).padStart(2, '0')+"/"+d1.getFullYear();
@@ -78,4 +78,4 @@ function get_connection() {
 
 
 
-module.exports = { pool, get_connection, int_l, htmls, fecha };
+module.exports = { port, pool, get_connection, int_l, htmls, fecha };

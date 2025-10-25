@@ -9,9 +9,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Gemini LLM Streamer</h1>
+        <h1>Gemini LLM: Prompt unico</h1>
 
-        <!-- Input Section -->
+
+        <!-- Prompt -->
         <div class="input-section">
             <div class="input-group">
                 <input type="text" id="prompt" style="width: 100%; height: 20px;" placeholder="prompt...">
@@ -20,24 +21,24 @@
             <div class="grid-cols-2">
                 <div style="margin-left:25px;">
                     <button id="generateBtn">
-                     Generate Stream
+                     Ejecutar el prompt!
                     </button>          
                  </div>
                 <div class="input-group">
-                    <label for="temperature">Temperature:</label>
-                    <input type="number" id="temperature" style="width: 50px;" value="0.7" min="0" max="1" step="0.1">
+                    <label for="temperature">Temperatura:</label>
+                    <input type="number" id="temperature" style="width: 50px;" value="0.3" min="0" max="0.9" step="0.1">
                 </div>
 
                 <div class="input-group">
-                    <label for="model">Model:</label>
+                    <label for="model">Modelo:</label>
                     <select id="model">
+                    <option value="gemini-2.5-flash-preview-09-2025">gemini-2.5-flash-preview-09-2025</option>
                     <option value="gemma-3n-e4b-it">gemma-3n-e4b-it</option>
                     <option value="gemma-3-27b-it">gemma-3-27b-it</option>
                     <option value="gemini-2.0-flash">gemini-2.0-flash</option>
-                    <option value="gemini-2.5-flash-lite-preview-06-17">gemini-2.5-flash-LITE</option>
+                    <option value="gemini-flash-lite-latest">gemini-flash-LITE-latest</option>
                     <option value="gemini-2.5-flash">gemini-2.5-flash</option>
                     <option value="gemini-2.5-pro">gemini-2.5-pro</option>
-                        <!-- Add other models if needed -->
                     </select>
                 </div>
 
@@ -46,18 +47,18 @@
 
         </div>
 
-        <!-- Response Section -->
+
+        <!-- Respuesta -->
         <div class="response-section">
-            <h2>Response:</h2>
+            <h2>Respuesta:</h2>
             <div id="loadingIndicator">
-                Generating response... Please wait.
+                Generando respuesta...
             </div>
             <div id="responseArea">
-                <!-- LLM streaming response will appear here -->
-                Start by entering a prompt and clicking "Generate Stream".
+                ...
             </div>
             <div id="errorDisplay">
-                <!-- Error messages will appear here -->
+                <!-- mensajes de error -->
             </div>
         </div>
     </div>
@@ -76,22 +77,22 @@
             const temperature = parseFloat(temperatureInput.value);
             const model = modelSelect.value;
 
-            // Clear previous response and error
+            // Eliminar respuesta anterior
             responseArea.textContent = '';
             errorDisplay.textContent = '';
-            errorDisplay.classList.remove('visible'); // Use custom class for visibility
+            errorDisplay.classList.remove('visible'); 
 
             if (!prompt) {
-                errorDisplay.textContent = 'Please enter a prompt.';
+                errorDisplay.textContent = 'Escribir una pregunta.';
                 errorDisplay.classList.add('visible');
                 return;
             }
 
             loadingIndicator.classList.add('visible');
-            generateBtn.disabled = true; // Disable button during generation
+            generateBtn.disabled = true; // disable mientras se genera rta
 
             try {
-                const response = await fetch('http://localhost:3060/generate-content', { // Ensure this matches your server's port
+                const response = await fetch('http://localhost:3060/generate-content', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -111,11 +112,11 @@
                 while (true) {
                     const { done, value } = await reader.read();
                     if (done) {
-                        break; // Stream finished
+                        break; // fin del stream 
                     }
                     result += decoder.decode(value, { stream: true });
                     responseArea.textContent = result;
-                    responseArea.scrollTop = responseArea.scrollHeight; // Scroll to bottom
+                    responseArea.scrollTop = responseArea.scrollHeight; // Scroll hacia el final
                 }
 
             } catch (error) {

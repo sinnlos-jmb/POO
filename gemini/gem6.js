@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
 const genAI = new GoogleGenAI({
-    apiKey: process.env.key_gem,
+    apiKey: process.env.key_gem2,
     apiVersion: 'v1beta',
 });
 

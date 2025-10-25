@@ -19,7 +19,7 @@ const { Producto, Empleado, Venta, Login } = require('./code/classes');
 
 app.get('/', async function (req, res) {
   const params = { op: req.query.op || '', usuario: req.query.usuario || '', pwd: req.query.pwd || '1221' , logged:false};
-  let rta=htmls.grid1;
+    let rta=htmls.grid1;
 
   if (params.op=="auth"){
       const o_user=new Login (params.usuario, params.pwd);

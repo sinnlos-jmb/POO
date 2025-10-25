@@ -85,6 +85,7 @@ let palabrasClave = Object.keys(this.problemasFrecuentes); // Obtiene todas las 
 for (let i = 0; i < palabrasClave.length; i++) {
   let palabra = palabrasClave[i];
   
+  //mensaje="como cambiar la contraseña"
   // Comprobar si el mensaje contiene la palabra clave actual. Si encontramos la palabra clave, devolver la solución
   if (mensaje.indexOf(palabra) !== -1) {
     let solucion = this.problemasFrecuentes[palabra];
@@ -311,21 +312,22 @@ class SistemaDeChatbots {
 
 
 // Demostración de uso
-function runChatbots() {
+
+
   // Crear el sistema de chatbots
   const sistema = new SistemaDeChatbots();
   
   // Crear instancias de diferentes tipos de bots
   const botSoporte = new BotDeSoporte("TechHelp");
-  const botClima = new BotDelClima("ClimaBot");
-  const botProgramacion = new BotDeProgramacion("CodeMaster");
+ // const botClima = new BotDelClima("ClimaBot");
+ // const botProgramacion = new BotDeProgramacion("CodeMaster");
 
 
   
   // Agregar los bots al sistema
   sistema.agregarBot("soporte", botSoporte);
-  sistema.agregarBot("clima", botClima);
-  sistema.agregarBot("programacion", botProgramacion);
+  //sistema.agregarBot("clima", botClima);
+  //sistema.agregarBot("programacion", botProgramacion);
   
   // Ejemplos de uso
   console.log("=== Bot de Soporte ===");
@@ -334,11 +336,16 @@ function runChatbots() {
 
   console.log("Usuario: Mi computadora está muy lenta");
   console.log("Bot:", sistema.procesarMensaje("soporte", "Mi computador está muy lento"));
+
+  console.log("Usuario: qué dia es hoy?");
+  console.log("Bot:", sistema.procesarMensaje("soporte", "qué dia es hoy"));
+
+
   console.log("Usuario: Gracias por la ayuda");
   console.log("Bot:", sistema.procesarMensaje("soporte", "Gracias por la ayuda"));
 
   
-
+/*
   console.log("\n=== Bot del Clima ===");
   console.log("Usuario: ¿Cuál es el clima hoy?");
   console.log("Bot:", sistema.procesarMensaje("clima", "¿Cuál es el clima hoy?"));
@@ -353,12 +360,10 @@ function runChatbots() {
   console.log("Usuario: Dame un ejemplo de código en Python");
   console.log("Bot:", sistema.procesarMensaje("programacion", "Dame un ejemplo de código en Python"));
 
+*/
   // Mostrar historial de conversación del bot de soporte
   console.log("\n=== Historial del Bot de Soporte ===");
   console.log(botSoporte.obtenerHistorial());  //json = javascript object notation
-  console.log("\n=== Historial del Bot de Clima ===");
-  console.log(botClima.obtenerHistorial());
-}
+//  console.log("\n=== Historial del Bot de Clima ===");
+//
 
-// Ejecutar la demostración
-runChatbots();

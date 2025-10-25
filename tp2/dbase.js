@@ -2,22 +2,22 @@ const readline = require("readline");
 const mariadb = require("mariadb");
 const { Client } = require("pg");
 
-// 🔹 Clase Base: Database
+// Clase Base: Database
 class Database {
     constructor(config) {
         this.config = config;
     }
 
     async conectar() {
-        throw new Error("❌ El método conectar() debe ser implementado en la subclase.");
+        throw new Error("El método conectar() debe ser implementado en la subclase.");
     }
 
     async crearTabla(nombre, columnas) {
         try {
             await this.conn.query(`CREATE TABLE IF NOT EXISTS ${nombre} (${columnas})`);
-            console.log(`📄 Tabla '${nombre}' creada.`);
+            console.log(`Tabla '${nombre}' creada.`);
         } catch (error) {
-            console.error("❌ Error al crear la tabla:", error);
+            console.error("Error al crear la tabla:", error);
         }
     }
 
@@ -26,28 +26,28 @@ class Database {
             const keys = Object.keys(datos).join(", ");
             const values = Object.values(datos).map(val => `'${val}'`).join(", ");
             await this.conn.query(`INSERT INTO ${nombreTabla} (${keys}) VALUES (${values})`);
-            console.log(`📥 Datos insertados en '${nombreTabla}'.`);
+            console.log(`Datos insertados en '${nombreTabla}'.`);
         } catch (error) {
-            console.error("❌ Error al cargar datos:", error);
-        }
+            console.error("Error al cargar datos:", error);
+            }
     }
 
     async ejecutarQuery(sql) {
         try {
             const resultados = await this.conn.query(sql);
-            console.log("🔍 Resultados:", resultados);
+            console.log("Resultados:", resultados);
             return resultados;
         } catch (error) {
-            console.error("❌ Error al ejecutar query:", error);
+            console.error("Error al ejecutar query:", error);
         }
     }
 
     async cerrarConexion() {
-        throw new Error("❌ El método cerrarConexion() debe ser implementado en la subclase.");
+        throw new Error("El método cerrarConexion() debe ser implementado en la subclase.");
     }
 }
 
-// 🔹 Subclase: MariaDB es la extensión codigo abierto (open source) del proyecto mySql.
+// Subclase: MariaDB es la extensión codigo abierto (open source) del proyecto mySql.
 class MariaDBDatabase extends Database { 
     constructor(config) {
         super(config);
@@ -75,7 +75,7 @@ class MariaDBDatabase extends Database {
     }
 }
 
-// 🔹 Subclase: PostgreSQLDatabase
+// Subclase: PostgreSQLDatabase
 class PostgreSQLDatabase extends Database {
     constructor(config) {
         super(config);
@@ -100,7 +100,7 @@ class PostgreSQLDatabase extends Database {
     }
 }
 
-// 📌 Interfaz para que el usuario seleccione la base de datos
+// Interfaz para que el usuario seleccione la base de datos
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
