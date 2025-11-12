@@ -1,7 +1,8 @@
 const { OpenRouter } = require('@openrouter/sdk');
+require('dotenv').config()
 
 const openRouter = new OpenRouter({
-  apiKey: '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',
+  apiKey: process.env.key_openrouter,
   defaultHeaders: {
     'HTTP-Referer': '<YOUR_SITE_URL>',
     'X-Title': 'Philosophy YES',

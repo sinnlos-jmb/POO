@@ -109,7 +109,7 @@ app.get('/ventas', async function (req, res) {
 app.post('/api/chat_NS', async (req, res) => { //version sin stream
 
 const openRouter = new OpenRouter({
-  apiKey: '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',
+  apiKey: key,
   defaultHeaders: {
     'HTTP-Referer': 'http://localhost:3060',
     'X-Title': 'Mini AI Chat',
