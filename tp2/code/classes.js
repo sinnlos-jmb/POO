@@ -1,4 +1,4 @@
-const lib_c = require("./consts");
+const {pool} = require("./consts");
 const bcrypt = require('bcrypt');  //npm install bcrypt
 
 class Producto {
@@ -47,7 +47,7 @@ static get_vec_js_productos(){
     static async cargar_vec() {
         let conn, rows;
         try {
-            conn = await lib_c.pool.getConnection();
+            conn = await pool.getConnection();
             rows = await conn.query("select id_producto, marca, modelo, id_categoria, precio, stock, talles, material, ancho, largo, temporada, color "+ 
                                     "from productos order by id_categoria");
             for (let i in rows) {
@@ -69,7 +69,7 @@ static get_vec_js_productos(){
 
     static async insert_producto(prd) {
     let rta = "";
-	const conn = await lib_c.pool.getConnection(), query="insert into productos  (marca, modelo, precio, stock, id_categoria, talles, material, temporada, color, ancho, largo) "+
+	const conn = await pool.getConnection(), query="insert into productos  (marca, modelo, precio, stock, id_categoria, talles, material, temporada, color, ancho, largo) "+
                                     "Values ('"+prd.marca+"', '"+prd.modelo+"', "+prd.precio+", "+prd.stock+", "+prd.categ+", '"+prd.talles+"', '"+prd.material+"', '"+prd.temporada+"', '"+prd.color+"', '"+prd.ancho+"', '"+prd.largo+"')";
 	try {
 			const r=await conn.query(query);
@@ -172,7 +172,7 @@ getDetalles () {
 static async cargar_vec() {
         let conn, rows;
         try {
-            conn = await lib_c.pool.getConnection();
+            conn = await pool.getConnection();
             rows = await conn.query("select id_empleado, nombre_empleado, apellido_empleado, dni_empleado, rol_empleado "+ 
                                     "from empleados");
             for (let i in rows) {
@@ -193,7 +193,7 @@ static async cargar_vec() {
 
 static async insert_empleado(emp) {
     let rta = "";
-	const conn = await lib_c.pool.getConnection(), query="insert into empleados  (nombre_empleado, apellido_empleado, dni_empleado, rol_empleado) "+
+	const conn = await pool.getConnection(), query="insert into empleados  (nombre_empleado, apellido_empleado, dni_empleado, rol_empleado) "+
                                     "Values ('"+emp.nombre+"', '"+emp.apellido+"', '"+emp.dni+"', '"+emp.rol+"')";
 	try {
 			const r=await conn.query(query);
@@ -243,7 +243,7 @@ getDetalles () {
 static async cargar_vec() {
         let conn, rows;
         try {
-            conn = await lib_c.pool.getConnection();
+            conn = await pool.getConnection();
             rows = await conn.query("select id_venta, id_empleado, total_importe, dni_cliente, DATE_FORMAT(fecha , '%d/%m/%Y') as fecha "+ 
                                     "from ventas");
             for (let i in rows) {
@@ -264,7 +264,7 @@ static async cargar_vec() {
 
 static async insert_venta(venta) {
     let rta = "";
-	const conn = await lib_c.pool.getConnection(), query="insert into ventas  (id_empleado, total_importe, fecha, dni_cliente) "+
+	const conn = await pool.getConnection(), query="insert into ventas  (id_empleado, total_importe, fecha, dni_cliente) "+
                                     "Values ("+venta.id_empleado+", "+venta.total+", CURRENT_TIMESTAMP, '"+venta.dni_cliente+"')";
 	try {
 			const r=await conn.query(query);
@@ -293,7 +293,7 @@ class Login {
 
   async autenticar() {
         console.log("ingreso a autenticar");
-        const conn = await lib_c.pool.getConnection();
+        const conn = await pool.getConnection();
         const pwd_hash=await bcrypt.hash(this.#pwd, 10);
         console.log("hash de pwd: "+this.#pwd+":"+pwd_hash);
 
@@ -305,11 +305,11 @@ class Login {
         );
 
         /*
-    CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_usuario VARCHAR(255) NOT NULL,
-    pwd_usuario VARCHAR(255) NOT NULL -- almacenada con bcrypt
-    );
+            CREATE TABLE usuarios (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nombre_usuario VARCHAR(255) NOT NULL,
+            pwd_usuario VARCHAR(255) NOT NULL -- almacenada con bcrypt
+            );
         */
 
         if (rows.length === 0) {
@@ -340,7 +340,7 @@ class Login {
   async nuevo_usuario () {
     let rta = "";
     const pwd_hash=await bcrypt.hash(this.#pwd, 10);
-	const conn = await lib_c.pool.getConnection(), query="insert into usuarios  (nombre_usuario, pwd_usuario) "+
+	const conn = await pool.getConnection(), query="insert into usuarios  (nombre_usuario, pwd_usuario) "+
                                     "Values ('"+this.user+"', '"+pwd_hash+"')";
 	try {
 			const r=await conn.query(query);

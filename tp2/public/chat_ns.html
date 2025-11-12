@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini AI Chat</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      height: 100vh;
+      padding-top: 20px;
+    }
+    #chatbox {
+      width: 90%;
+      max-width: 500px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      height: 70vh;
+      margin-bottom: 15px;
+    }
+    .msg { margin: 8px 0; }
+    .user { color: blue; }
+    .bot { color: green; }
+    input, button {
+      padding: 10px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mini AI Chat</h2>
+  <div id="chatbox"></div>
+  <div>
+    <input id="msgInput" placeholder="Escribe algo ..." style="width:300px" />
+    <button onclick="sendMsg()">Send</button>
+  </div>
+
+  <script>
+    async function sendMsg() {
+      const input = document.getElementById('msgInput');
+      const chat = document.getElementById('chatbox');
+      const msg = input.value.trim();
+      if (!msg) return;
+      alert(JSON.stringify({ message: msg }));
+
+      chat.innerHTML += `<div class="msg user"><b>You:</b> ${msg}</div>`;
+      input.value = '';
+      chat.scrollTop = chat.scrollHeight;
+
+      const res = await fetch('/api/chat_NS', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+
+      const data = await res.json();
+      chat.innerHTML += `<div class="msg bot"><b>AI:</b> ${data.reply}</div>`;
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>

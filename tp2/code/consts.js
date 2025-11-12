@@ -1,11 +1,13 @@
 const mariadb = require('mariadb');
+require('dotenv').config()
 
 const host_db = "localhost";
 const user_db = "manu";
 const pwd_db = "1234";
-const dbase = "poo_hotel";
+const dbase = "POO_ec";
 const pool_size = 3;
-const port = 3060;
+const port = process.env.port;
+const key=process.env.key_openrouter;
 
 const d1=new Date();
 const fecha=String(d1.getDate()).padStart(2, '0')+"/"+String(d1.getMonth() + 1).padStart(2, '0')+"/"+d1.getFullYear();
@@ -78,4 +80,4 @@ function get_connection() {
 
 
 
-module.exports = { port, pool, get_connection, int_l, htmls, fecha };
+module.exports = { port, key, pool, get_connection, int_l, htmls, fecha };

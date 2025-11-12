@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Chatbot Streaming</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f5f5f5;
+      margin: 2rem;
+    }
+    #chat {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+    }
+    .user { color: blue; margin: .5rem 0; }
+    .assistant { color: green; margin: .5rem 0; }
+    textarea {
+      width: 100%;
+      font-size: 1rem;
+      margin-top: .5rem;
+      border-radius: 6px;
+      padding: .5rem;
+    }
+    button {
+      margin-top: .5rem;
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🤖 Mini Chatbot (streaming)</h2>
+  <div id="chat"></div>
+  <textarea id="input" rows="2" placeholder="Escribí tu mensaje..."></textarea>
+  <button id="send">Enviar</button>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("input");
+    const sendBtn = document.getElementById("send");
+
+    async function sendMessage() {
+      const message = input.value.trim();
+      if (!message) return;
+
+      // Mostrar el mensaje del usuario
+      chat.innerHTML += `<div class="user"><b>Tú:</b> ${message}</div>`;
+      input.value = "";
+
+      // Crear contenedor de respuesta del asistente
+      const aiMsg = document.createElement("div");
+      aiMsg.className = "assistant";
+      aiMsg.innerHTML = "<b>AI:</b> ";
+      chat.appendChild(aiMsg);
+      chat.scrollTop = chat.scrollHeight;
+
+      const response = await fetch("http://localhost:3060/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      });
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const text = decoder.decode(value);
+        aiMsg.innerHTML += text;
+        chat.scrollTop = chat.scrollHeight;
+      }
+    }
+
+    sendBtn.onclick = sendMessage;
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

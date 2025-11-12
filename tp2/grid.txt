@@ -1,0 +1,43 @@
+<div class='grid-container'>
+
+<header>
+<h1>App de Ecommerce - POO</h1>
+</header>
+
+<nav>
+<ul>
+<li><a href='/'>Home</a></li>
+<li><a href='/productos'>Productos</a></li>
+<li><a href='/empleados'>Empleados</a></li>
+<li><a href='/ventas'>Ventas</a></li>
+<li><a href='#'>Login</a></li>
+</ul>
+</nav>
+
+<main>
+<h2 style='text-align: center;'>Modelo de app: gestion tienda online</h2>
+<h3>Login</h3> 
+
+<form method='get' action='/'>
+<p>
+<label for='usuario'>Nombre: </label> 
+<input type='text' id='usuario' name='usuario' /> 
+</p>
+
+<p>
+<label for='pwd'>Contraseña: </label>
+<input type='password' id='pwd' name='pwd' /> 
+</p>
+
+<p> 
+<button type='submit'>Login</button>
+<button type='button' onclick='window.location.href="?op=new"'>Registrarse</button>
+</p>
+<input type='hidden' name='op' value='auth'>
+</form>
+</main>
+
+<footer>
+<p>&copy; 2025 My Website</p>
+</footer>
+</div>
